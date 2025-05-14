@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>finlog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <a href="{{ url_for('index') }}" class="sidebar-btn home-btn">Home</a>
+            <div class="sidebar-user">
+                <div class="avatar-circle">
+                    <svg width="60" height="60" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="#222" stroke-width="2" fill="none"/><path d="M4 20c0-4 16-4 16 0" stroke="#222" stroke-width="2" fill="none"/></svg>
+                </div>
+                <div class="user-info">
+                    <div class="user-name">user name</div>
+                    <div class="user-email">email id</div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('add_expense') }}" class="sidebar-btn">add expense</a>
+                <a href="{{ url_for('daily_track') }}" class="sidebar-btn">daily track</a>
+                <a href="{{ url_for('montly_track') }}" class="sidebar-btn">montly track</a>
+                <a href="{{ url_for('comparison') }}" class="sidebar-btn">comparison</a>
+                <a href="{{ url_for('settings') }}" class="sidebar-btn">settings</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="logo-area">
+                <span class="logo-text">finlog</span>
+            </div>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    {% block scripts %}{% endblock %}
+</body>
+</html> 

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="header">
+    <h1>Expense Reports</h1>
+    <p class="text-center mb-3">Analyze your spending patterns and trends</p>
+</header>
+
+<section class="card">
+    <h2><i class="fas fa-chart-pie"></i> Expenses by Category</h2>
+    <div class="table-responsive">
+        <table class="expense-table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Total Amount</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set total = category_totals|sum(attribute='total') %}
+                {% for category in category_totals %}
+                <tr>
+                    <td>
+                        <div class="category-item">
+                            {% if category[0] == 'Food' %}
+                            <span class="category-icon">🍔</span>
+                            {% elif category[0] == 'Transport' %}
+                            <span class="category-icon">🚗</span>
+                            {% elif category[0] == 'Shopping' %}
+                            <span class="category-icon">🛍️</span>
+                            {% elif category[0] == 'Bills' %}
+                            <span class="category-icon">💡</span>
+                            {% elif category[0] == 'Entertainment' %}
+                            <span class="category-icon">🎬</span>
+                            {% elif category[0] == 'Health' %}
+                            <span class="category-icon">🏥</span>
+                            {% elif category[0] == 'Travel' %}
+                            <span class="category-icon">✈️</span>
+                            {% elif category[0] == 'Education' %}
+                            <span class="category-icon">📚</span>
+                            {% elif category[0] == 'Gifts' %}
+                            <span class="category-icon">🎁</span>
+                            {% else %}
+                            <span class="category-icon">📌</span>
+                            {% endif %}
+                            {{ category[0] }}
+                        </div>
+                    </td>
+                    <td class="amount">₹{{ "%.2f"|format(category[1]) }}</td>
+                    <td>{{ "%.1f"|format(category[1] / total * 100) }}%</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="card">
+    <h2><i class="fas fa-chart-line"></i> Monthly Expenses</h2>
+    <div class="table-responsive">
+        <table class="expense-table">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for month in monthly_totals %}
+                <tr>
+                    <td>{{ month[0] }}</td>
+                    <td class="amount">₹{{ "%.2f"|format(month[1]) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %} 

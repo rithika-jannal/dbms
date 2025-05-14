@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="section-header-big">add expense<span class="logo-apostrophe">’</span></div>
+    <form method="post" class="add-expense-form">
+        <div class="add-expense-grid">
+            <div class="add-expense-col">
+                <div class="add-expense-label">amount</div>
+                <input type="number" name="amount" class="add-expense-input" placeholder="in inr" required>
+            </div>
+            <div class="add-expense-col">
+                <div class="add-expense-label">domain</div>
+                <select name="category" class="add-expense-input" required>
+                    <option value="">-select-</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat['name'] }}">{{ cat['name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="add-expense-col">
+                <div class="add-expense-label">date</div>
+                <input type="date" name="date" class="add-expense-input" required>
+            </div>
+        </div>
+        <div class="add-expense-btn-row">
+            <button type="submit" class="settings-btn">Add Expense</button>
+        </div>
+    </form>
+{% endblock %}

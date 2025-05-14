@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="section-header-big" style="background-color: purple; color: white;">comparison<span class="logo-apostrophe">’</span></div>
+    <div class="centered-graph">
+        <img src="{{ url_for('static', filename='comparison_graph.png') }}" alt="Comparison Graph" class="graph-img">
+    </div>
+{% endblock %}

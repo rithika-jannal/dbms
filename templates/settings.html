@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="section-header-big">settings</div>
+    <div class="settings-btn-group">
+        <a href="#" class="settings-btn">income</a>
+        <a href="#" class="settings-btn">category limit</a>
+        <a href="#" class="settings-btn">log out</a>
+    </div>
+    <form method="post" class="settings-form">
+        <div class="settings-form-section">
+            <label class="settings-label">Salary (Monthly Income)</label>
+            <input type="number" name="salary" class="settings-input" placeholder="Enter your salary" required>
+        </div>
+        <div class="settings-form-section">
+            <label class="settings-label">Set Limit for Each Category</label>
+            {% for cat in ['Food','Transport','Shopping','Bills','Entertainment','Health','Travel','Education','Gifts','Other'] %}
+                <div class="settings-limit-row">
+                    <span class="settings-limit-cat">{{ cat }}</span>
+                    <input type="number" name="limit_{{ cat|lower }}" class="settings-input settings-limit-input" placeholder="Limit for {{ cat }}" min="0">
+                </div>
+            {% endfor %}
+        </div>
+        <div class="add-expense-btn-row">
+            <button type="submit" class="settings-btn">Save Settings</button>
+        </div>
+    </form>
+{% endblock %}
